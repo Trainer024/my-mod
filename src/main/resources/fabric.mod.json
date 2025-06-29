@@ -1,0 +1,18 @@
+{
+	"schemaVersion": 1,
+	"id": "configcore",
+	"version": "1.0.0",
+	"name": "ConfigCore",
+	"entrypoints": {
+		"main": [
+			"com.example.mymod.MyMod"
+		],
+		"client": [
+			"com.example.mymod.MyModClient"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.14.22",
+		"fabric-api": "*"
+	}
+}
