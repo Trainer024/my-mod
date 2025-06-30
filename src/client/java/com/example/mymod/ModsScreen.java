@@ -1,6 +1,5 @@
-package com.example.mymod.buttons;
+package com.example.mymod;
 
-import com.example.mymod.MyScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
@@ -14,16 +13,26 @@ public class ModsScreen extends Screen {
 
     @Override
     protected void init() {
-        this.addDrawableChild(ButtonWidget.builder(Text.literal("Home"), btn ->
-                        MinecraftClient.getInstance().setScreen(new MyScreen()))
-                .dimensions(5, 50, 120, 20)
-                .build());
+        // Add a simple "Back to Home" button
+        this.addDrawableChild(ButtonWidget.builder(Text.literal("Home"), btn -> {
+            MinecraftClient.getInstance().setScreen(new MyScreen());
+        }).dimensions(5, 50, 200, 30).build());
     }
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        context.fill(0, 0, width, height, 0xCC000000);
+        // Transparent background
+        context.fill(0, 0, width, height, 0x88000000);
+
+        // Draw children
         super.render(context, mouseX, mouseY, delta);
+
+        // Title
         context.drawCenteredTextWithShadow(textRenderer, this.title, width / 2, 20, 0xFFFFFF);
+    }
+
+    @Override
+    public boolean shouldPause() {
+        return false;
     }
 }
